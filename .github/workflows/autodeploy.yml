@@ -24,15 +24,18 @@ jobs:
       uses: actions/setup-node@v2-beta
       with: 
           node-version: 12
+    
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@v2.3.0
+      with:
+       # Yarn command
+       cmd: install #installing yarn/npm
       
-    - name: Setup Node Module
-      run: npm install
-      
-    - name: Create Bulid
-      run: npm run build 
+    - name: Creating Bulid
+      run: yarn build 
       
     - name: Installing Surge.sh
       run: npm install --global surge
   
     - name: Deploying using surge
-      run: surge ./build bootcampclassii.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      run: surge ./build http://bootcampclassii.surge.sh --token ${{ secrets.SURGE_TOKEN }}
